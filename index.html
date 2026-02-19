@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>ЭЛИКСИР ПОБЕДА</title>
+
+        <style>
+            :root {
+                --bg1: #0b1020;
+                --bg2: #1b1240;
+                --card: rgba(255, 255, 255, 0.07);
+                --border: rgba(255, 255, 255, 0.12);
+                --text: rgba(255, 255, 255, 0.92);
+                --muted: rgba(255, 255, 255, 0.7);
+                --accent: #b86bff;
+                --accent2: #ff6bd6;
+                --radius: 22px;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
+            body {
+                margin: 0;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    Segoe UI,
+                    Roboto,
+                    sans-serif;
+                color: var(--text);
+
+                /* фон на всю высоту */
+                background:
+                    radial-gradient(
+                        1200px 700px at 15% 10%,
+                        rgba(184, 107, 255, 0.35),
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        1000px 600px at 85% 20%,
+                        rgba(255, 107, 214, 0.25),
+                        transparent 55%
+                    ),
+                    linear-gradient(160deg, var(--bg1), var(--bg2));
+
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+
+                display: flex;
+                justify-content: center;
+                align-items: center; /* вертикальное центрирование */
+                padding: 30px 16px;
+            }
+
+            .wrapper {
+                width: min(980px, 100%);
+            }
+
+            .card {
+                background: var(--card);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                backdrop-filter: blur(10px);
+                overflow: hidden;
+                width: 100%;
+            }
+
+            /* встроенный счетчик */
+            .counter-bar {
+                text-align: center;
+                padding: 16px;
+                font-size: clamp(14px, 2vw, 16px);
+                letter-spacing: 0.4px;
+                background: linear-gradient(
+                    90deg,
+                    rgba(184, 107, 255, 0.18),
+                    rgba(255, 107, 214, 0.18)
+                );
+                border-bottom: 1px solid var(--border);
+            }
+
+            .counter-bar span {
+                font-weight: 600;
+                color: #fff;
+            }
+
+            header {
+                padding: 22px 22px 0 22px;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: clamp(26px, 4vw, 46px);
+                font-weight: 800;
+                line-height: 1.1;
+            }
+
+            .subtitle {
+                margin-top: 10px;
+                color: var(--muted);
+                font-size: clamp(14px, 2vw, 16px);
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .block {
+                padding: 12px 14px;
+                margin-bottom: 12px;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.04);
+            }
+
+            .block strong {
+                color: #fff;
+            }
+
+            footer {
+                padding: 16px 20px 20px;
+                font-size: 14px;
+                color: rgba(255, 255, 255, 0.6);
+                border-top: 1px solid var(--border);
+            }
+
+            @media (max-width: 600px) {
+                header {
+                    padding: 18px 18px 0;
+                }
+                .content {
+                    padding: 18px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="card">
+                <div class="counter-bar">
+                    ЭЛИКСИР ПОБЕДА УЖЕ
+                    <span id="yearsCounter">0</span> ЛЕТ
+                </div>
+
+                <header>
+                    <h1><span id="year"></span> — время Elixir</h1>
+                    <div class="subtitle">Спокойно. Быстро. Надёжно.</div>
+                </header>
+
+                <div class="content">
+                    <div class="block">
+                        ⚗️ <strong>Конкурентность</strong> встроена с самого
+                        начала.
+                    </div>
+
+                    <div class="block">
+                        🔁 <strong>Пайпы</strong> — код читается по ходу мысли.
+                    </div>
+
+                    <div class="block">
+                        🛡️ <strong>OTP</strong> — упал процесс, не система.
+                    </div>
+
+                    <div class="block">
+                        🔥 <strong>Phoenix</strong> — веб без перегруза.
+                    </div>
+
+                    <div class="block">
+                        🧊 <strong>Иммутабельность</strong> — меньше хаоса.
+                    </div>
+                </div>
+
+                <footer>elixir-lang.org</footer>
+            </div>
+        </div>
+
+        <script>
+            const startYear = 2011;
+
+            function updateYear() {
+                const now = new Date();
+                document.getElementById("year").textContent = now.getFullYear();
+            }
+
+            function updateCounter() {
+                const now = new Date();
+                const diff = now - new Date(startYear, 0, 1);
+                const years = diff / (1000 * 60 * 60 * 24 * 365.25);
+                document.getElementById("yearsCounter").textContent =
+                    years.toFixed(9);
+            }
+
+            updateYear();
+            updateCounter();
+            setInterval(updateCounter, 50);
+        </script>
+    </body>
+</html>
